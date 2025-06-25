@@ -1,0 +1,3 @@
+[submodule "extern/OFIQ-Project"]
+	path = extern/OFIQ-Project
+	url = https://github.com/BSI-OFIQ/OFIQ-Project.git
