@@ -50,8 +50,10 @@ private:
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
 
-    void ZoomIn(wxCommandEvent& event = wxCommandEvent());
-    void ZoomOut(wxCommandEvent& event = wxCommandEvent());
+    void ZoomIn();
+    void ZoomOut();
+    void ZoomIn(wxCommandEvent& event);
+    void ZoomOut(wxCommandEvent& event);
     void Zoom_1_4(wxCommandEvent& event);
     void Zoom_1_2(wxCommandEvent& event);
     void Zoom_1_1(wxCommandEvent& event);
@@ -435,6 +437,7 @@ void OFIQDemoFrame::OnKeyDown(wxKeyEvent& event)
         }
         else if (IsKeyPressed(WXK_NUMPAD_SUBTRACT) || IsKeyPressed('-'))
         {
+            
             ZoomOut();
         }
     }
@@ -454,6 +457,18 @@ void OFIQDemoFrame::OnAbout(wxCommandEvent& event)
 {
     wxMessageBox("This is a demonstrator for the Open Face Image Quality (OFIQ) library",
         "About OFIQ Demonstrator", wxOK | wxICON_INFORMATION);
+}
+
+void OFIQDemoFrame::ZoomIn()
+{
+    wxCommandEvent empty;
+    ZoomIn(empty);
+}
+
+void OFIQDemoFrame::ZoomOut()
+{
+    wxCommandEvent empty;
+    ZoomOut(empty);
 }
 
 void OFIQDemoFrame::ZoomIn(wxCommandEvent& event)
@@ -550,7 +565,7 @@ void OFIQDemoFrame::OnLoadImage(wxCommandEvent& event)
     else
     {
         wxBusyCursor wait;
-        std::string image_path = m_imageFileDialogPtr->GetPath();
+        std::string image_path = m_imageFileDialogPtr->GetPath().ToStdString();
         DoLoadImage(image_path);
     }
 }
@@ -564,7 +579,7 @@ void OFIQDemoFrame::OnSaveImage(wxCommandEvent& event)
     else
     {
         wxBusyCursor wait;
-        std::string image_path = m_imageSaveFileDialogPtr->GetPath();
+        std::string image_path = m_imageSaveFileDialogPtr->GetPath().ToStdString();
         DoSaveImage(image_path);
     }
 }
@@ -578,7 +593,7 @@ void OFIQDemoFrame::OnSaveAssessment(wxCommandEvent& event)
     else
     {
         wxBusyCursor wait;
-        std::string csv_path = m_csvSaveFileDialogPtr->GetPath();
+        std::string csv_path = m_csvSaveFileDialogPtr->GetPath().ToStdString();
         DoSaveAssessment(csv_path);
     }
 }

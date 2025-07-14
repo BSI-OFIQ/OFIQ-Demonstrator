@@ -35,7 +35,7 @@ SET(OS windows CACHE STRING "Operating System windows, linux or mac")
 
 if(UNIX AND NOT APPLE)
     project(${project_name} VERSION ${ver_major}.${ver_minor}.${ver_patch} LANGUAGES CXX)
-    include(source/CMakeLists.ubuntu.cmake)
+    include(source/CMakeLists.linux.cmake)
 elseif(APPLE)
     project(${project_name} VERSION ${ver_major}.${ver_minor}.${ver_patch} LANGUAGES CXX)
     include(source/CMakeLists.macos.cmake)
