@@ -62,3 +62,46 @@ onnxruntime.dll
 ```
 
 To start the demonstrator run `OFIQDemonstrator.exe`
+
+### Linux
+
+The following has been tested on Ubuntu 24.04 x64. 
+
+First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#ubuntu-2404-x86_64) and ensure that you are workin in an activated python environment
+ 
+``` bash
+# use other dir if python environment is at another location
+source /path/to/py_ofiq_env/bin/activate
+```
+
+Compile OFIQ.
+
+``` bash
+# use other dir if OFIQ-Demonstrator is at another location
+cd /path/to/OFIQ-Demonstrator/extern/OFIQ-Project/scripts/
+sh build.sh
+```
+
+Now, compile the demonstrator
+
+``` bash
+# use other dir if OFIQ-Demonstrator is at another location
+cd /path/to/OFIQ-Demonstrator/scripts/
+sh build.sh
+```
+
+After successful building, the folder `./build/build_linux/` should contain the following files:
+
+``` bash
+OFIQDemonstrator.exe
+Release/ofiq_lib.dll
+Release/onnxruntime.dll
+```
+
+You can start the demonstrator as follows.
+
+``` bash
+# use other dir if OFIQ-Demonstrator is at another location
+cd /path/to/OFIQ-Demonstrator/./build/build_linux/
+./OFIQDemonstrator
+```
