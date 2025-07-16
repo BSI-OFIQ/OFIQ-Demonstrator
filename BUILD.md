@@ -93,15 +93,15 @@ sh build.sh
 After successful building, the folder `./build/build_linux/` should contain the following files:
 
 ``` bash
-OFIQDemonstrator.exe
-Release/ofiq_lib.dll
-Release/onnxruntime.dll
+OFIQDemonstrator
+Release/ofiq_lib.so
+Release/onnxruntime.so
 ```
 
 You can start the demonstrator as follows.
 
 ``` bash
 # use other dir if OFIQ-Demonstrator is at another location
-cd /path/to/OFIQ-Demonstrator/./build/build_linux/
+cd /path/to/OFIQ-Demonstrator/build/build_linux/
 ./OFIQDemonstrator
 ```
