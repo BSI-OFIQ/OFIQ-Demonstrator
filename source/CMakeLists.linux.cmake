@@ -57,5 +57,7 @@ list(APPEND LINK_LIST
 )
 
 # add a test application
-add_executable(OFIQDemonstrator WIN32 ${SOURCE_DIR}/src/OFIQDemonstrator.cpp)
+add_executable(OFIQDemonstrator ${SOURCE_DIR}/src/OFIQDemonstrator.cpp)
+set_target_properties(OFIQDemonstrator PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
+set_target_properties(OFIQDemonstrator PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
 target_link_libraries(OFIQDemonstrator PRIVATE ${wxWidgets_LIBRARIES} ${LINK_LIST})

@@ -90,12 +90,12 @@ cd /path/to/OFIQ-Demonstrator/scripts/
 sh build.sh
 ```
 
-After successful building, the folder `./build/build_linux/` should contain the following files:
+After successful building, the folder `./build/build_linux/Release` should contain the following files:
 
 ``` bash
 OFIQDemonstrator
-Release/ofiq_lib.so
-Release/onnxruntime.so
+ofiq_lib.so
+onnxruntime.so.1.17.3
 ```
 
 You can start the demonstrator as follows.
@@ -105,3 +105,9 @@ You can start the demonstrator as follows.
 cd /path/to/OFIQ-Demonstrator/build/build_linux/
 ./OFIQDemonstrator
 ```
+
+Note: If attempting to start the demonstrator results in an error on loading shared libraries, check and ensure that the directory `./` is in the library path, e.g., by running
+``` bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
+```
+before starting the demonstrator.
