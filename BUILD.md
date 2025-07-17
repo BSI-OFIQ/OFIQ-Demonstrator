@@ -36,8 +36,12 @@ of **cmake version 3.29** has been used. As the compiler, **Microsoft's Visual S
 To install conan open the command prompt and run
 
 ``` cmd
-pip install conan==2.0.17
+pip install conan==2.18.1
+# This may be required to switch to wxWidgets v3.2.8
+conan remote update conancenter --url="https://center2.conan.io"
 ```
+
+
 
 In order to successfully build the demonstrator, the OFIQ library must first be built. To do this, the following command should be executed in the directory in which the demonstrator was checked out.
 
@@ -90,6 +94,13 @@ cd /path/to/OFIQ-Demonstrator/scripts/
 sh build.sh
 ```
 
+NOTE: If you encounter problems with compiling wxWidgets, upgrade to Conan v2.18.1 and upgrade
+the url of conancenter as follows.
+``` bash
+pip install conan==2.18.1
+conan remote update conancenter --url="https://center2.conan.io"
+```
+
 After successful building, the folder `./build/build_linux/Release` should contain the following files:
 
 ``` bash
@@ -106,7 +117,63 @@ cd /path/to/OFIQ-Demonstrator/build/build_linux/
 ./OFIQDemonstrator
 ```
 
-Note: If attempting to start the demonstrator results in an error on loading shared libraries, check and ensure that the directory `./` is in the library path, e.g., by running
+NOTE: If attempting to start the demonstrator results in an error on loading shared libraries, check and ensure that the directory `./` is in the library path, e.g., by running
+``` bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
+```
+before starting the demonstrator.
+
+### MacOS
+
+The following has been tested on Ubuntu 24.04 x64. 
+
+First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#ubuntu-2404-x86_64) and ensure that you are workin in an activated python environment
+ 
+``` bash
+# use other dir if python environment is at another location
+source /path/to/py_ofiq_env/bin/activate
+```
+
+Compile OFIQ.
+
+``` bash
+# use other dir if OFIQ-Demonstrator is at another location
+cd /path/to/OFIQ-Demonstrator/extern/OFIQ-Project/scripts/
+sh build.sh
+```
+
+Now, compile the demonstrator
+
+``` bash
+# use other dir if OFIQ-Demonstrator is at another location
+cd /path/to/OFIQ-Demonstrator/scripts/
+sh build.sh
+```
+
+NOTE: If you encounter problems with compiling wxWidgets, upgrade to Conan v2.18.1 and upgrade
+the url of conancenter as follows.
+``` bash
+pip install conan==2.18.1
+conan remote update conancenter --url="https://center2.conan.io"
+```
+
+After successful building, the folder `./build/build_linux/Release` should contain the following files:
+
+``` bash
+OFIQDemonstrator
+ofiq_lib.so
+onnxruntime.so.1.17.3
+```
+
+You can start the demonstrator as follows.
+
+``` bash
+# use other dir if OFIQ-Demonstrator is at another location
+cd /path/to/OFIQ-Demonstrator/build/build_linux/
+./OFIQDemonstrator
+```
+
+NOTE: If attempting to start the demonstrator results in an error on loading shared libraries, check and ensure that the directory `./` is in the library path, e.g., by running
 ``` bash
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
 ```

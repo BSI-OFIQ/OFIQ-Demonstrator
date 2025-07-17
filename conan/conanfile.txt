@@ -1,7 +1,7 @@
 [requires]
 gtest/1.14.0
 opencv/4.5.5
-wxwidgets/3.2.6
+wxwidgets/3.2.8
 [options]
 opencv*:with_tiff=False
 opencv*:with_webp=False
