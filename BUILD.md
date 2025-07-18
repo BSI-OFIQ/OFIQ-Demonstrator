@@ -152,7 +152,7 @@ pip install conan==2.18.1
 conan remote update conancenter --url="https://center2.conan.io"
 ```
 
-After successful building, the folder `./build/build_mac/Release` should contain the following files:
+After successful building, the folder `/path/to/OFIQ-Demonstrator/build/build_mac/Release` should contain the following files:
 
 ``` bash
 OFIQDemonstrator
@@ -164,7 +164,7 @@ You can start the demonstrator as follows.
 
 ``` bash
 # use other dir if OFIQ-Demonstrator is at another location
-cd /path/to/OFIQ-Demonstrator/build/build_linux/
+cd /path/to/OFIQ-Demonstrator/build/build_mac/Release
 ./OFIQDemonstrator
 ```
 
