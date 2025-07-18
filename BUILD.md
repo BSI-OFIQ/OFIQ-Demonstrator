@@ -71,7 +71,7 @@ To start the demonstrator run `OFIQDemonstrator.exe`
 
 The following has been tested on Ubuntu 24.04 x64. 
 
-First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#ubuntu-2404-x86_64) and ensure that you are workin in an activated python environment
+First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#ubuntu-2404-x86_64) and ensure that you are working in an activated python environment
  
 ``` bash
 # use other dir if python environment is at another location
@@ -125,21 +125,16 @@ before starting the demonstrator.
 
 ### MacOS
 
-The following has been tested on Ubuntu 24.04 x64. 
+The following has been tested on MacOS Sequoia 15.5 . 
 
-First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#ubuntu-2404-x86_64) and ensure that you are workin in an activated python environment
- 
-``` bash
-# use other dir if python environment is at another location
-source /path/to/py_ofiq_env/bin/activate
-```
+First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#macos-arm64) and ensure that you are working in an activated python environment
 
 Compile OFIQ.
 
 ``` bash
 # use other dir if OFIQ-Demonstrator is at another location
 cd /path/to/OFIQ-Demonstrator/extern/OFIQ-Project/scripts/
-sh build.sh
+sh build.sh --os macOS
 ```
 
 Now, compile the demonstrator
@@ -147,7 +142,7 @@ Now, compile the demonstrator
 ``` bash
 # use other dir if OFIQ-Demonstrator is at another location
 cd /path/to/OFIQ-Demonstrator/scripts/
-sh build.sh
+sh build.sh --os macos
 ```
 
 NOTE: If you encounter problems with compiling wxWidgets, upgrade to Conan v2.18.1 and upgrade
@@ -157,12 +152,12 @@ pip install conan==2.18.1
 conan remote update conancenter --url="https://center2.conan.io"
 ```
 
-After successful building, the folder `./build/build_linux/Release` should contain the following files:
+After successful building, the folder `./build/build_mac/Release` should contain the following files:
 
 ``` bash
 OFIQDemonstrator
-ofiq_lib.so
-onnxruntime.so.1.17.3
+ofiq_lib.dylib
+onnxruntime.1.17.3.dylib
 ```
 
 You can start the demonstrator as follows.
@@ -175,6 +170,8 @@ cd /path/to/OFIQ-Demonstrator/build/build_linux/
 
 NOTE: If attempting to start the demonstrator results in an error on loading shared libraries, check and ensure that the directory `./` is in the library path, e.g., by running
 ``` bash
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
+export DYLD_LIBRARY_PATH=.:$DYLD_LIBRARY_PATH
 ```
 before starting the demonstrator.
+
+NOTE: Also note that the menu bar on MacOS may not be attached to the demonstrator window. It is usually on the very top of the desktop.
