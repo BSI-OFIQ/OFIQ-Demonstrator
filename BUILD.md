@@ -134,7 +134,7 @@ Compile OFIQ.
 ``` bash
 # use other dir if OFIQ-Demonstrator is at another location
 cd /path/to/OFIQ-Demonstrator/extern/OFIQ-Project/scripts/
-sh build.sh --os macOS
+sh build.sh --os macos
 ```
 
 Now, compile the demonstrator
