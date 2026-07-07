@@ -69,10 +69,10 @@ To start the demonstrator run `OFIQDemonstrator.exe`
 
 ### Linux
 
-The following has been tested on Ubuntu 24.04 x64. 
+The following has been tested on Ubuntu 24.04 x64.
 
 First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#ubuntu-2404-x86_64) and ensure that you are working in an activated python environment
- 
+
 ``` bash
 # use other dir if python environment is at another location
 source /path/to/py_ofiq_env/bin/activate
@@ -88,6 +88,12 @@ sh build.sh
 
 Now, compile the demonstrator
 
+Some conan packages require pkg-config, if it's not installed run
+
+``` bash
+sudo apt-get install pkgconf
+```
+
 ``` bash
 # use other dir if OFIQ-Demonstrator is at another location
 cd /path/to/OFIQ-Demonstrator/scripts/
@@ -96,8 +102,9 @@ sh build.sh
 
 NOTE: If you encounter problems with compiling wxWidgets, upgrade to Conan v2.18.1 and upgrade
 the url of conancenter as follows.
+
 ``` bash
-pip install conan==2.18.1
+pip install conan==2.30.0
 conan remote update conancenter --url="https://center2.conan.io"
 ```
 
@@ -106,7 +113,7 @@ After successful building, the folder `./build/build_linux/Release` should conta
 ``` bash
 OFIQDemonstrator
 ofiq_lib.so
-onnxruntime.so.1.17.3
+libonnxruntime.so.1.18.1
 ```
 
 You can start the demonstrator as follows.
@@ -118,14 +125,22 @@ cd /path/to/OFIQ-Demonstrator/build/build_linux/
 ```
 
 NOTE: If attempting to start the demonstrator results in an error on loading shared libraries, check and ensure that the directory `./` is in the library path, e.g., by running
+
 ``` bash
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
 ```
+
 before starting the demonstrator.
+
+In case you see this message in Terminal - `Gtk-Message: ... Failed to load module "canberra-gtk-module"`, install the missing package:
+
+``` bash
+sudo apt-get install libcanberra-gtk-module
+```
 
 ### MacOS
 
-The following has been tested on MacOS Sequoia 15.5 . 
+The following has been tested on MacOS Sequoia 15.5 .
 
 First, configure conan as described [here](https://github.com/BSI-OFIQ/OFIQ-Project/blob/main/BUILD.md#macos-arm64) and ensure that you are working in an activated python environment
 
