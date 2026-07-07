@@ -30,8 +30,8 @@ find_package(wxWidgets REQUIRED gl core base)
 add_library(onnxruntime SHARED IMPORTED)
 set_target_properties(onnxruntime PROPERTIES
     IMPORTED_IMPLIB ${OFIQ_SRC_DIR}/install_arm64_mac/${CMAKE_BUILD_TYPE}/bin/libonnxruntime.dylib
-    IMPORTED_LOCATION ${OFIQ_SRC_DIR}/install_arm64_mac/${CMAKE_BUILD_TYPE}/bin/libonnxruntime.1.17.3.dylib
-    INTERFACE_INCLUDE_DIRECTORIES ${OFIQ_SRC_DIR}/extern/onnxruntime-osx-universal2-1.17.3/include
+    IMPORTED_LOCATION ${OFIQ_SRC_DIR}/install_arm64_mac/${CMAKE_BUILD_TYPE}/bin/libonnxruntime.1.18.1.dylib
+    INTERFACE_INCLUDE_DIRECTORIES ${OFIQ_SRC_DIR}/extern/onnxruntime-osx-universal2-1.18.1/include
 )
 get_property(IMPORTED_LIB_LOCATION TARGET onnxruntime PROPERTY IMPORTED_LOCATION)
 install(FILES "${IMPORTED_LIB_LOCATION}" DESTINATION ${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE})

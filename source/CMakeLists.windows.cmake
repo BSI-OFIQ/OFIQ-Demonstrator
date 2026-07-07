@@ -29,9 +29,9 @@ find_package(wxWidgets REQUIRED gl core base)
 
 add_library(onnxruntime SHARED IMPORTED)
 set_target_properties(onnxruntime PROPERTIES
-    IMPORTED_IMPLIB ${OFIQ_SRC_DIR}/extern/onnxruntime-win-x64-1.17.3/lib/onnxruntime.lib
-    IMPORTED_LOCATION ${OFIQ_SRC_DIR}/extern/onnxruntime-win-x64-1.17.3/lib/onnxruntime.dll
-    INTERFACE_INCLUDE_DIRECTORIES ${OFIQ_SRC_DIR}/extern/onnxruntime-win-x64-1.17.3/include
+    IMPORTED_IMPLIB ${OFIQ_SRC_DIR}/extern/onnxruntime-win-x64-1.18.1/lib/onnxruntime.lib
+    IMPORTED_LOCATION ${OFIQ_SRC_DIR}/extern/onnxruntime-win-x64-1.18.1/lib/onnxruntime.dll
+    INTERFACE_INCLUDE_DIRECTORIES ${OFIQ_SRC_DIR}/extern/onnxruntime-win-x64-1.18.1/include
 )
 get_property(IMPORTED_LIB_LOCATION TARGET onnxruntime PROPERTY IMPORTED_LOCATION)
 install(FILES "${IMPORTED_LIB_LOCATION}" DESTINATION ${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE})
