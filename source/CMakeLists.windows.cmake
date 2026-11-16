@@ -7,7 +7,11 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/source)
 
-set(OFIQ_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/OFIQ-Project")
+# Location of the OFIQ submodule to link against. Defaults to extern/OFIQ-Project;
+# a build script may override it on the command line (-DOFIQ_SRC_DIR=...).
+if(NOT DEFINED OFIQ_SRC_DIR)
+    set(OFIQ_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/OFIQ-Project")
+endif()
 
 # Define local include pathes
 list(FILTER include_modules EXCLUDE REGEX "/src$")
@@ -23,7 +27,7 @@ list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/build/conan")
 
 # Add packages from conan
 set(OpenCV_STATIC ON)
-find_package(OpenCV REQUIRED COMPONENTS core calib3d imgcodecs imgproc highgui dnn ml)
+find_package(OpenCV REQUIRED COMPONENTS core calib3d imgcodecs imgproc highgui dnn ml videoio)
 set(wxWidgets_USE_STATIC ON)
 find_package(wxWidgets REQUIRED gl core base)
 
@@ -54,10 +58,17 @@ list(APPEND PUBLIC_HEADER_LIST
 #	${SOURCE_DIR}/src/OFIQDemonstrator.cpp
 #)
 
-list(APPEND LINK_LIST 
+list(APPEND LINK_LIST
 	opencv::opencv
+	strmiids
+	ole32
+	oleaut32
 )
 
 # add a test application
-add_executable(OFIQDemonstrator WIN32 ${SOURCE_DIR}/src/OFIQDemonstrator.cpp)
+add_executable(OFIQDemonstrator WIN32
+	${SOURCE_DIR}/src/OFIQDemonstrator.cpp
+	${SOURCE_DIR}/src/OfiqInitOperation.cpp
+	${SOURCE_DIR}/src/OfiqAssessOperation.cpp
+)
 target_link_libraries(OFIQDemonstrator PRIVATE ${wxWidgets_LIBRARIES} ofiq_lib onnxruntime ${LINK_LIST})
