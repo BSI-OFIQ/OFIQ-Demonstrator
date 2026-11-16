@@ -1,13 +1,13 @@
 @echo off
 
 set build_dir=build\build_win
-set architecture=x64  
+set architecture=x64
 set install_dir=install_x86_64
 set set_compiler=""
 set generator="Visual Studio 16 2019"
 set config=Release
 
-:loop 
+:loop
 if "%1" == "" goto done
 if /i "%1" == "--arch" set "architecture=%2"
 if /i "%1" == "--compiler" set "set_compiler=%2"
@@ -41,7 +41,11 @@ IF %set_compiler%==17 (
 )
 
 @REM build dependencies
-erase /Q ..\build\conan\*.*
+if exist ..\build\conan (
+  echo Removing previous conan build
+  rmdir /S /Q ..\build\conan
+)
+
 if %config%==Release (
     conan install ../conan/conanfile.txt --build missing ^
     --profile:build ../conan/conan_profile_release.txt ^

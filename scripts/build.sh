@@ -1,4 +1,7 @@
 #!/bin/bash
+# Fail the build on any error (conan/cmake) instead of silently running to the
+# end and returning 0 — otherwise CI reports "green" even when the build broke.
+set -eo pipefail
 build_dir=build/build_linux
 install_dir=install_x86_64_linux
 config=Release
@@ -53,7 +56,7 @@ fi
 
 cd ../
 echo "Removing $build_dir"
-rm -r $build_dir
+rm -rf $build_dir
 
 echo "Generating build files"
 cmake -S ./ -B $build_dir -DCMAKE_INSTALL_PREFIX=$install_dir -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
